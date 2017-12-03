@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using System.Net.Http;
+using App1;
+using Newtonsoft.Json;
+using System.IO;
+using Android.Webkit;
+
+namespace FreeClub
+{
+    [Activity(Label = "Videos")]
+    public class Videos : Activity
+    {
+        private string chemin = "http://192.168.241.187:5000/api/events";
+       // private MediaController videoMediaController;
+
+        /*public Video Bytes2Video(byte[] bytBytes2Convert)
+{
+string strTempFile = Path.GetTempPath() + "MyTempFile.wmv";
+File.WriteAllBytes(strTempFile, bytBytes2Convert);
+Video vidConvertedVideo = Video.FromFile(strTempFile);
+DeleteTempFile(strTempFile);
+
+return vidConvertedVideo;
+}*/
+        protected async override void OnCreate(Bundle savedInstanceState)
+        {
+            SetContentView(Resource.Layout.Videos);
+            base.OnCreate(savedInstanceState);
+            /* var client = new HttpClient();
+             var json = await client.GetStringAsync(chemin);
+             List<Event> taskModels = JsonConvert.DeserializeObject<List<Event>>(json);
+             string nom = Intent.GetStringExtra("nom");
+             int n = taskModels.Count;
+             byte[] vid = null;
+             int i;
+             for (i = 0; i < n; i++)
+             {
+                 if (taskModels[i].Name == nom)
+                 {
+                     vid = taskModels[i].Vid;
+                 }
+             }
+             int longueur = vid.Length;
+             Android.Graphics.Movie video = Android.Graphics.Movie.DecodeByteArray(vid,0,longueur);*/
+            VideoView videoo = FindViewById<VideoView>(Resource.Id.video);
+
+            var Path = (@"C:\Users\GMI\Downloads\test.3gp");
+            var uri = Android.Net.Uri.Parse(Path);
+            videoo.SetVideoURI(uri);
+            MediaController vidControl = new MediaController(this);
+            vidControl.SetAnchorView(videoo);
+            videoo.SetMediaController(vidControl);
+            videoo.Start();
+           
+        }
+    }
+}

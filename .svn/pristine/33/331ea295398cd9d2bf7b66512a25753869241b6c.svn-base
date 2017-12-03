@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using System.Net.Http;
+using Newtonsoft.Json;
+
+namespace FreeClub
+{
+    [Activity(Label = "VoteDetail")]
+    public class VoteDetail : Activity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.userRow);
+            int id = Intent.GetIntExtra("id",0);
+            string name = Intent.GetStringExtra("name");
+            string date = Intent.GetStringExtra("date");
+            string description = Intent.GetStringExtra("description");
+            string lien = Intent.GetStringExtra("Lien");
+            byte [] Ima = Intent.GetByteArrayExtra("Image");
+            TextView nameTxt = FindViewById<TextView>(Resource.Id.name);
+            TextView dateTxt = FindViewById<TextView>(Resource.Id.date);
+            TextView descriptionTxt = FindViewById<TextView>(Resource.Id.description);
+            TextView lienTxt = FindViewById<TextView>(Resource.Id.lien);
+            Button yesBut = FindViewById<Button>(Resource.Id.yesBut);
+            Button NoBut = FindViewById<Button>(Resource.Id.NoBut);
+            nameTxt.Text = name;
+            dateTxt.Text = date;
+            descriptionTxt.Text = description;
+            lienTxt.Text = lien;
+            yesBut.Click += async delegate
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync("http://192.168.241.187:63835/api/vote/?id="+id+"&&email=med.kh@gmail.com&&choix=1");
+                var taskModels = JsonConvert.DeserializeObject<Boolean>(json);
+            };
+            NoBut.Click += async delegate
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync("http://192.168.241.187:63835/api/vote/?id=" + id + "&&email=med.kh@gmail.com&&choix=2");
+                var taskModels = JsonConvert.DeserializeObject<Boolean>(json);
+            };
+        }
+    }
+}

@@ -1,0 +1,22 @@
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.deps.json
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.runtimeconfig.json
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.runtimeconfig.dev.json
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.dll
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.pdb
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.xml
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.csprojResolveAssemblyReference.cache
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.AssemblyInfo.cs
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.dll
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.xml
+C:\Users\GMI\Desktop\ASPNetCoreWebAPI-master\CoreWebApi\src\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.pdb
+E:\Stage projects\App1\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.deps.json
+E:\Stage projects\App1\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.runtimeconfig.json
+E:\Stage projects\App1\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.runtimeconfig.dev.json
+E:\Stage projects\App1\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.dll
+E:\Stage projects\App1\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.pdb
+E:\Stage projects\App1\CoreWebApi\bin\Debug\netcoreapp1.0\CoreWebApi.xml
+E:\Stage projects\App1\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.csprojResolveAssemblyReference.cache
+E:\Stage projects\App1\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.AssemblyInfo.cs
+E:\Stage projects\App1\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.dll
+E:\Stage projects\App1\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.xml
+E:\Stage projects\App1\CoreWebApi\obj\Debug\netcoreapp1.0\CoreWebApi.pdb

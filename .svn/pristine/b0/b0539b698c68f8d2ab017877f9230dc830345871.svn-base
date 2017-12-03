@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:background="@android:color/darker_gray">
+  <GridLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/gridLayout1"
+      android:columnCount="1"
+      android:rowCount="6"
+      android:layout_gravity="center"
+      android:minWidth="20px"
+      android:minHeight="20px"
+      android:background="@android:color/darker_gray">
+    <TextView
+        android:text="Nom : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="80px"
+        android:textStyle="italic"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:text="Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:textSize="70px"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:text="Date : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="80px"
+        android:textStyle="italic"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:text="Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/date"
+        android:textSize="70px"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:text="description : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:textSize="80px"
+        android:textStyle="italic"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:text="Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/description"
+        android:textSize="70px"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:text="Lien : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="80px"
+        android:textStyle="italic"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:text="Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lien"
+        android:textSize="70px"
+        android:textColor="@android:color/white" />
+  </GridLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:background="@android:color/darker_gray">
+
+      <Button
+        android:id="@+id/yesBut"
+        android:text="Oui"
+        android:layout_marginTop="150px"
+        android:layout_marginLeft="350px"
+        android:textSize="60px"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        />
+      <Button
+      android:id="@+id/NoBut"
+      android:text="Non"
+      android:layout_marginTop="150px"
+      android:textSize="60px"
+      android:gravity="center"
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content"
+        />
+    </LinearLayout>
+   
+ 
+</LinearLayout>

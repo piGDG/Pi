@@ -1,0 +1,111 @@
+﻿using Android.App;
+using Android.Widget;
+using Android.OS;
+using System.Threading.Tasks;
+using Org.Apache.Http.Client;
+using System.Net.Mail;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using Org.Json;
+using Android.Content;
+using FreeClub;
+using System;
+
+namespace App1
+{
+    [Activity(Label = "Events", MainLauncher = false, Icon = "@drawable/icon")]
+    public class MainActivity : Activity
+    {
+        
+        private ListView listView;
+        private string chemin = "http://192.168.241.187:5000/api/events";
+        protected async override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+           SetContentView (Resource.Layout.Events);
+            var client = new HttpClient();
+            var json = await client.GetStringAsync(chemin);
+            var taskModels = JsonConvert.DeserializeObject<List<Event>>(json);
+            List<Event> aVenir = new List<Event>();
+            DateTime date = DateTime.Today;
+            foreach (Event ev in taskModels)
+            {
+                if (date <= ev.Date) aVenir.Add(ev);
+            }
+            List<string> eventss = new List<string>();
+            foreach (Event ev in aVenir)
+            {
+                string eve = "nom : " + ev.Name + "\ndate : " + ev.Date ;
+                eventss.Add(eve);
+            }
+            /*byte[] ima = taskModels[0].Ima;
+            ImageView image = FindViewById<ImageView>(Resource.Id.image);
+            Android.Graphics.Bitmap bmp = await Android.Graphics.BitmapFactory.DecodeByteArrayAsync(ima, 0, 1000000);
+            image.SetImageBitmap(bmp);*/
+            listView = FindViewById<ListView>(Resource.Id.MyList);
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, eventss);
+            listView.Adapter = adapter;
+            for(int i = 0; i < eventss.Count; i++)
+            {
+
+            }
+            ImageButton home = FindViewById<ImageButton>(Resource.Id.IB1);
+            ImageButton events = FindViewById<ImageButton>(Resource.Id.IB2);
+            ImageButton history = FindViewById<ImageButton>(Resource.Id.IB3);
+            ImageButton vote = FindViewById<ImageButton>(Resource.Id.IB4);
+            ImageButton partage = FindViewById<ImageButton>(Resource.Id.IB5);
+            ImageButton deco = FindViewById<ImageButton>(Resource.Id.IB6);
+            home.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Home));
+                StartActivity(nextAct);
+            };
+            vote.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Vote));
+                StartActivity(nextAct);
+            };
+            partage.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Partage));
+                StartActivity(nextAct);
+            };
+            vote.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Vote));
+                StartActivity(nextAct);
+            };
+            history.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(History));
+                StartActivity(nextAct);
+            };
+            deco.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Auth));
+                StartActivity(nextAct);
+            };
+            listView = FindViewById<ListView>(Resource.Id.MyList);
+            void listViewItemClick(object sender , AdapterView.ItemClickEventArgs e)
+            {
+                Intent nextAct = new Intent(this, typeof(Detail));
+                nextAct.PutExtra("name", aVenir[e.Position].Name);
+                nextAct.PutExtra("date", aVenir[e.Position].Date.ToString());
+                nextAct.PutExtra("description", aVenir[e.Position].Description);
+                nextAct.PutExtra("Lien", aVenir[e.Position].Lien);
+                StartActivity(nextAct);
+            }
+            listView.ItemClick += listViewItemClick;
+
+        }
+    }
+}
+

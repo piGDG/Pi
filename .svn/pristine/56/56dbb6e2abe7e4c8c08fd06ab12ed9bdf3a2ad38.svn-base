@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using System.Net.Http;
+using Newtonsoft.Json;
+using App1;
+
+namespace FreeClub
+{
+    [Activity(Label = "FreeClub", MainLauncher = true, Icon = "@drawable/logofreed")]
+    public class Auth : Activity
+    {
+        private string chemin = "http://192.168.241.187:5000/api/client";
+        protected async override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.Auth);
+            EditText email = FindViewById<EditText>(Resource.Id.EmailTxt);
+            EditText passwd = FindViewById<EditText>(Resource.Id.passwordTxt);
+            Button connBut = FindViewById<Button>(Resource.Id.connbut);
+           
+            var client = new HttpClient();
+            var json = await client.GetStringAsync(chemin);
+            var taskModels = JsonConvert.DeserializeObject<List<Client>>(json);
+            int i = 0;
+            connBut.Click += delegate
+            {
+                string emaill = email.Text;
+                string password = passwd.Text;
+
+                foreach (Client cl in taskModels)
+                {
+                    if (emaill == cl.Email && password == cl.password)
+                    {
+                        this.Finish();
+                        Intent nextAct = new Intent(this, typeof(Home));
+                        StartActivity(nextAct);
+                        i++;
+                        break;
+                    }
+                }
+            };
+            TextView motPass = FindViewById<TextView>(Resource.Id.motPass);
+            motPass.Click += delegate
+            {
+                email.Text = "bien fait";
+            };
+        }
+    }
+}

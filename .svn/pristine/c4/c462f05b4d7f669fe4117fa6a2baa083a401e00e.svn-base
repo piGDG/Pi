@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:background="@android:color/white">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:background="@android:color/white">
+        <GridLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gridLayout1">
+            <TextView
+                android:text="Email               :"
+                android:textSize="55px"
+                android:id="@+id/textView1"
+                android:textColor="@android:color/black" />
+            <EditText
+                android:inputType="textEmailAddress"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:id="@+id/EmailTxt" />
+        </GridLayout>
+        <GridLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_marginTop="150px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="Mot de passe :"
+                android:textSize="55px"
+                android:id="@+id/textView1"
+                android:textColor="@android:color/black" />
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordTxt" />
+        </GridLayout>
+        <TextView
+            android:text="Login ou mot de passe est incorrecte"
+            android:gravity="right"
+            android:layout_marginTop="60px"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="50px"
+            android:id="@+id/oubliTxt" />
+        <TextView
+            android:text="Mot de passe oublié?"
+            android:gravity="right"
+            android:layout_marginTop="60px"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="50px"
+            android:id="@+id/motPass" />
+        <Button
+            android:text="Connexion"
+            android:layout_marginTop="210px"
+            android:id="@+id/connbut"
+            android:gravity="center"
+            android:layout_width="600px"
+            android:layout_height="wrap_content"
+            android:textSize="50px" />
+        <ImageView
+            android:gravity="center"
+            android:background="@drawable/logofreed"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="150px" />
+    </LinearLayout>
+</LinearLayout>

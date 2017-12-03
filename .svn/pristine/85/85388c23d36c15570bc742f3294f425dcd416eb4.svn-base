@@ -1,0 +1,4 @@
+INSERT INTO events (Id, Nom, Date, Description, Lien)
+ VALUES
+ (3, 'voyage', '20/07/2017', 'aprés une semaine de travaille, nous avons besoin de repot alors nous allons passer un week end a hammamet','voyage_weekend@freedomofdev.tn'),
+ (4, 'match_football', '15/03/2017', 'aprés une semaine de travaille, nous avons besoin de faire du sport alors nous allons jouer un match de football','voyage_weekend@freedomofdev.tn');

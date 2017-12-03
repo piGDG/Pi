@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using FreeClub;
+using System.Net.Http;
+using Newtonsoft.Json;
+
+namespace App1
+{
+    [Activity(Label = "Vote")]
+    public class Vote : Activity
+    {
+        ListView myList;
+        protected async override void OnCreate(Bundle savedInstanceState)
+        {
+            string Email = Intent.GetStringExtra("Email");
+            string password = Intent.GetStringExtra("Password");
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.Vote);
+            ImageButton home = FindViewById<ImageButton>(Resource.Id.IB1);
+            ImageButton events = FindViewById<ImageButton>(Resource.Id.IB2);
+            ImageButton history = FindViewById<ImageButton>(Resource.Id.IB3);
+            ImageButton vote = FindViewById<ImageButton>(Resource.Id.IB4);
+            ImageButton partage = FindViewById<ImageButton>(Resource.Id.IB5);
+            ImageButton deco = FindViewById<ImageButton>(Resource.Id.IB6);
+            List<string> eventss = new List<string>();
+            myList = FindViewById<ListView>(Resource.Id.listView);
+            HttpContent content = new FormUrlEncodedContent(
+               new List<KeyValuePair<string, string>> {
+                  new KeyValuePair<string, string>("Email", Email),
+                  new KeyValuePair<string, string>("Password", password),
+                  new KeyValuePair<string, string>("RememberMe", "true")
+       });
+            var client = new HttpClient();
+            HttpResponseMessage resposne = await client.PostAsync(new Uri("http://192.168.241.187:63835/Account/Login/"), content);
+            var json = await client.GetStringAsync("http://192.168.241.187:63835/api/events");
+            var taskModels = JsonConvert.DeserializeObject<List<Event>>(json);
+            foreach (Event ev in taskModels)
+            {
+                string eve = ev.Name + "\n" + ev.Date;
+                eventss.Add(eve);
+            }
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, eventss);
+            myList.Adapter = adapter;
+            home.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Home));
+                nextAct.PutExtra("Email", Email);
+                nextAct.PutExtra("Password", password);
+                StartActivity(nextAct);
+            };
+            deco.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Auth));
+                StartActivity(nextAct);
+            };
+            vote.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Vote));
+                nextAct.PutExtra("Email", Email);
+                nextAct.PutExtra("Password", password);
+                StartActivity(nextAct);
+            };
+            partage.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(Partage));
+                nextAct.PutExtra("Email", Email);
+                nextAct.PutExtra("Password", password);
+                StartActivity(nextAct);
+            };
+            events.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(MainActivity));
+                nextAct.PutExtra("Email", Email);
+                nextAct.PutExtra("Password", password);
+                StartActivity(nextAct);
+            };
+            history.Click += delegate
+            {
+                this.Finish();
+                Intent nextAct = new Intent(this, typeof(History));
+                nextAct.PutExtra("Email", Email);
+                nextAct.PutExtra("Password", password);
+                StartActivity(nextAct);
+            };
+            myList = FindViewById<ListView>(Resource.Id.listView);
+            void listViewItemClick(object sender, AdapterView.ItemClickEventArgs e)
+            {
+                Intent nextAct = new Intent(this, typeof(VoteDetail));
+                nextAct.PutExtra("id", taskModels[e.Position].Id);
+                nextAct.PutExtra("name", taskModels[e.Position].Name);
+                nextAct.PutExtra("date", taskModels[e.Position].Date.ToString());
+                nextAct.PutExtra("description", taskModels[e.Position].Description);
+                nextAct.PutExtra("Lien", taskModels[e.Position].Lien);
+                nextAct.PutExtra("Email", Email);
+                nextAct.PutExtra("Password", password);
+                StartActivity(nextAct);
+            }
+            myList.ItemClick += listViewItemClick;
+        }
+    }
+}

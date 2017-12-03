@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="App1.FreeClub" android:versionCode="1" android:versionName="1.0" android:installLocation="preferExternal">
+  <!--suppress UsesMinSdkAttributes-->
+  <uses-sdk android:minSdkVersion="10" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.HARDWARE_TEST" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <application android:label="FreeClub" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+    <activity android:label="Detail" android:name="md5579855c995bdb073d8182511e793544c.Detail" />
+    <activity android:label="Historique" android:name="md5579855c995bdb073d8182511e793544c.History" />
+    <activity android:label="Acceuil" android:name="md5579855c995bdb073d8182511e793544c.Home" />
+    <activity android:icon="@drawable/icon" android:label="Evenements" android:name="md5579855c995bdb073d8182511e793544c.MainActivity" />
+    <activity android:label="Partage" android:name="md5579855c995bdb073d8182511e793544c.Partage" />
+    <activity android:label="Vote" android:name="md5579855c995bdb073d8182511e793544c.Vote" />
+    <activity android:icon="@drawable/logo" android:label="Pi GDG" android:name="md560b6ec221cc264441e06c3ee45455640.Auth">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:label="Images" android:name="md560b6ec221cc264441e06c3ee45455640.Images" />
+    <activity android:label="PartageImage" android:name="md560b6ec221cc264441e06c3ee45455640.PartageImage" />
+    <activity android:label="PartageVideo" android:name="md560b6ec221cc264441e06c3ee45455640.PartageVideo" />
+    <activity android:label="Videos" android:name="md560b6ec221cc264441e06c3ee45455640.Videos" />
+    <activity android:label="Detail de vote" android:name="md560b6ec221cc264441e06c3ee45455640.VoteDetail" />
+    <activity android:label="VoteProject" android:name="md560b6ec221cc264441e06c3ee45455640.VoteProject" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="App1.FreeClub.mono.MonoRuntimeProvider.__mono_init__" />
+    <!--suppress ExportedReceiver-->
+    <receiver android:name="mono.android.Seppuku">
+      <intent-filter>
+        <action android:name="mono.android.intent.action.SEPPUKU" />
+        <category android:name="mono.android.intent.category.SEPPUKU.App1.FreeClub" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

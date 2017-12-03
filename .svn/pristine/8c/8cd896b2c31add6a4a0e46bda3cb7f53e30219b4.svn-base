@@ -1,0 +1,7 @@
+CREATE TABLE events
+(
+    Nom varchar(20),
+    Date varchar(20),
+    description varchar(200),
+    lien varchar(50)
+)

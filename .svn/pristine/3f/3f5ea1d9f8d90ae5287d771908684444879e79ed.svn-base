@@ -1,0 +1,100 @@
+﻿using System.Collections.Generic;
+using CoreWebApi.Model;
+using Microsoft.AspNetCore.Mvc;
+using System.DrawingCore;
+using System.IO;
+using System.Data.SqlClient;
+
+namespace CoreWebApi.Controllers
+{
+    [Route("api/[controller]")]
+    public class EventsController : Controller
+    {
+        private SqlConnection conn;
+        private SqlCommand cmd;
+        private SqlDataReader reader = null;
+        public static byte[] ToByteArray(string path)
+        {
+            byte[] buffer = System.IO.File.ReadAllBytes(path);
+            return buffer;
+        }
+        private static byte[] imageToByteArray(Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.DrawingCore.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+    
+
+private static List<byte[]> photos = new List<byte[]>
+        {
+
+          {imageToByteArray(Image.FromFile(@"Images\panda.jpg")) },
+          {imageToByteArray(Image.FromFile(@"Images\skate.jpg")) },
+          {imageToByteArray(Image.FromFile(@"Images\lune.jpg")) },
+          {imageToByteArray(Image.FromFile(@"Images\parachute.jpg"))}
+
+    };
+        private List<Event> events = new List<Event>();
+           /*{
+               new Event {Id = 1,Name = "soirée ramadhanesque",Date = "10/06/2017",Description="Ramadan est là ! C’est parti pour les soirées entre amis ou familles ! Qui n'aime pas passer une soirée ramadanesque à papoter, rigoler autour d'un café turc, un bon thé au pignon,... ",Lien="www.soiréeRamadanesque.freedomofdev.tn",Vid=ToByteArray(@"Videos\test.mp4")},
+               new Event {Id = 2,Name = "randonnée",Date = "22/07/2017",Description="La randonnée pédestre est une activité de plein air qui s'effectue à pied en suivant un itinéraire",Lien="www.randonnée.freedomofdev.tn",Ima = photos},
+              new Event { Id = 3,Name = "festival",  Date = "19/08/2017",Description="Un festival, organisée à époque fixe et récurrente autour d'une activité liée au spectacle, aux arts, aux loisirs, etc.",Lien="www.festival.freedomofdev.tn",Ima= photos }
+        };*/
+        public void Connect()
+        {
+            conn = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FreeClub;Integrated Security=True;Pooling=False");
+
+          conn.Open();
+            cmd = new SqlCommand("select * from events");
+            cmd.Connection = conn;
+            reader = cmd.ExecuteReader();
+            List<Event> ev = new List<Event>();
+            while (reader.Read())
+            {
+                Event e = new Event
+                {
+
+                    Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                    Name = reader.GetString(reader.GetOrdinal("Nom")),
+                    Date = reader.GetDateTime(reader.GetOrdinal("Date")),
+                    Description = reader.GetString(reader.GetOrdinal("Description")),
+                    Lien = reader.GetString(reader.GetOrdinal("Lien"))
+                };
+                ev.Add(e);
+            }
+            events = ev;
+        }
+        // GET: api/values
+        [HttpGet]
+        public IEnumerable<Event> Get()
+        {
+            Connect();
+            events[0].Ima = photos;
+            events[1].Ima = photos; 
+            return events;
+        }
+        [HttpGet("{id}", Name = "GetTodo")]
+        public Event GetById(int id)
+        {
+            Event Ev = null;
+            for (int i = 0; i < 3; i++)
+            {
+                if (events[i].Id == id) Ev = events[i];
+            }
+            return Ev;
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] Event item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            events.Add(item);
+            return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
+        }
+       
+    }
+}
